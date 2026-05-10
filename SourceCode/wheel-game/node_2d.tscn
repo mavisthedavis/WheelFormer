@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://dffyehafo5tr5"]
+
+[ext_resource type="Script" uid="uid://b1t8ws6g82efo" path="res://goal.gd" id="1_hqns4"]
+[ext_resource type="PackedScene" uid="uid://ynmfrkjnnm6r" path="res://the-wheel-godot-main/wheel.tscn" id="1_wtcfe"]
+[ext_resource type="Script" uid="uid://qe4upltpb80r" path="res://the-wheel-godot-main/wheel.gd" id="2_4d7sh"]
+[ext_resource type="Texture2D" uid="uid://d26cocb7f5biu" path="res://the-wheel-godot-main/Assets/wheel-placeholder/slice1.png" id="3_ir8iy"]
+[ext_resource type="Texture2D" uid="uid://b26d46otswkev" path="res://the-wheel-godot-main/Assets/wheel-placeholder/slice2.png" id="4_hqns4"]
+[ext_resource type="Texture2D" uid="uid://b62c2x3fpqy2g" path="res://the-wheel-godot-main/Assets/wheel-placeholder/slice3.png" id="5_x0ka3"]
+[ext_resource type="Texture2D" uid="uid://cibvjji04v87m" path="res://the-wheel-godot-main/Assets/wheel-placeholder/slice4.png" id="6_0h7mo"]
+[ext_resource type="Texture2D" uid="uid://dq2c0cj6havec" path="res://the-wheel-godot-main/Assets/wheel-placeholder/underlay.png" id="7_nr8wp"]
+[ext_resource type="Texture2D" uid="uid://cqsjo7cxeno47" path="res://the-wheel-godot-main/Assets/wheel-placeholder/overlay.png" id="8_d2bti"]
+[ext_resource type="Texture2D" uid="uid://bj1ti43o3pgnc" path="res://the-wheel-godot-main/Assets/wheel-placeholder/selector.png" id="9_ta5nu"]
+[ext_resource type="Script" uid="uid://bp6lco2pm2osb" path="res://character_body_2d.gd" id="10_x0ka3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hqns4"]
+radius = 79.22752
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ir8iy"]
+size = Vector2(335, 254)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nr8wp"]
+size = Vector2(103, 99)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0h7mo"]
+size = Vector2(70, 68)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqns4"]
+size = Vector2(1167, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0ka3"]
+size = Vector2(7.999958, 661)
+
+[node name="Node2D" type="Node2D" unique_id=1142087241]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1775387986]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("10_x0ka3")
+
+[node name="Wheel" parent="CharacterBody2D" unique_id=26388600 instance=ExtResource("1_wtcfe")]
+custom_minimum_size = Vector2(200, 200)
+offset_left = 1.0
+offset_top = -0.9999924
+offset_right = 301.0
+offset_bottom = 299.0
+scale = Vector2(0.6, 0.6)
+script = ExtResource("2_4d7sh")
+wheel_scale = 0.6
+slice_textures = Array[Texture2D]([ExtResource("3_ir8iy"), ExtResource("4_hqns4"), ExtResource("5_x0ka3"), ExtResource("6_0h7mo")])
+underlay_texture = ExtResource("7_nr8wp")
+overlay_texture = ExtResource("8_d2bti")
+selector_texture = ExtResource("9_ta5nu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1095537898]
+position = Vector2(94, 89)
+shape = SubResource("CircleShape2D_hqns4")
+
+[node name="Level1" type="StaticBody2D" parent="." unique_id=1596911667]
+unique_name_in_owner = true
+collision_mask = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Level1" unique_id=573296646]
+position = Vector2(498, 108)
+shape = SubResource("RectangleShape2D_ir8iy")
+
+[node name="Level2" type="StaticBody2D" parent="." unique_id=1310593716]
+unique_name_in_owner = true
+visible = false
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level2" unique_id=500237513]
+position = Vector2(294, 304)
+shape = SubResource("RectangleShape2D_nr8wp")
+
+[node name="Goal" type="Area2D" parent="." unique_id=1554764268]
+unique_name_in_owner = true
+collision_layer = 4
+collision_mask = 2
+input_pickable = false
+script = ExtResource("1_hqns4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal" unique_id=1516547275]
+position = Vector2(118, 414)
+shape = SubResource("RectangleShape2D_0h7mo")
+debug_color = Color(9.3854965e-07, 0.64901674, 0.1715712, 0.41960785)
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=1566303806]
+collision_mask = 0
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls" unique_id=699866610]
+position = Vector2(573.5, -5)
+shape = SubResource("RectangleShape2D_hqns4")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls" unique_id=849993081]
+position = Vector2(570, 653)
+shape = SubResource("RectangleShape2D_hqns4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls" unique_id=364160467]
+position = Vector2(-5.999982, 320.5)
+shape = SubResource("RectangleShape2D_x0ka3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls" unique_id=794138343]
+position = Vector2(1156, 326)
+shape = SubResource("RectangleShape2D_x0ka3")
+
+[connection signal="body_entered" from="Goal" to="Goal" method="_on_body_entered"]
